@@ -41,9 +41,21 @@ FROM node:6.16-alpine
 RUN apk add --update tini \
     && mkdir -p /usr/src/app
 
-COPY package.json /usr/src/app/package.json
+COPY app.js package.json /usr/src/app/
 
 WORKDIR /usr/src/app
 
 RUN npm install \
     && npm cache clean --force
+
+COPY bin /usr/src/app/bin/
+COPY public /usr/src/app/public/
+COPY routes /usr/src/app/routes/
+COPY views /usr/src/app/views/
+
+EXPOSE 3000
+
+CMD ["/sbin/tini", "--", "node", "./bin/www"]
+
+# Run with:
+# docker container run --name nodeapp --rm -p 80:3000 nodejsapp1
