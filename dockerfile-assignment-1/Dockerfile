@@ -59,3 +59,7 @@ CMD ["/sbin/tini", "--", "node", "./bin/www"]
 
 # Run with:
 # docker container run --name nodeapp --rm -p 80:3000 nodejsapp1
+
+# Publish:
+# docker tag nodejsapp1 maulinglawns/nodejsapp1
+# docker push maulinglawns/nodejsapp1
