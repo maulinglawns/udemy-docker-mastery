@@ -1,0 +1,22 @@
+---
+version: '2'
+volumes:
+  drupal_modules:
+  drupal_profiles:
+  drupal_themes:
+  drupal_sites:
+services:
+  drupal:
+    image: drupal:8.8.2
+    ports:
+      - 8080:80
+    volumes:
+      - drupal_modules:/var/www/html/modules
+      - drupal_profiles:/var/www/html/profiles
+      - drupal_themes:/var/www/html/themes
+      - drupal_sites:/var/www/html/sites
+
+  postgres:
+    image: postgres:12.1
+    environment:
+      POSTGRES_PASSWORD: foobar
